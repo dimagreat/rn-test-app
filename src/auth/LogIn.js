@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect, disp } from 'react-redux';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -49,4 +49,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapDispatchToProps)(LogIn)
+export default connect(null, mapDispatchToProps)(LogIn)

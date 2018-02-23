@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { createStoreб applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import devToolsEnhancer from 'remote-redux-devtools';
 // import { composeWithDevTools } from 'remote-redux-devtools';
-
 
 import Router from './router/Router';
 import reducer from './redux/reducer';

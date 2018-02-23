@@ -7,7 +7,7 @@ import {
 
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class StackOverflow extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>

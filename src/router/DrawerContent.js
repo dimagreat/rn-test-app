@@ -9,26 +9,31 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
-import * as routes from './routes';
+import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from './routes';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={Actions[routes.HOME]}>
+        <TouchableHighlight onPress={Actions[HOME_ROUTE]}>
           <Text>
             Home
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={Actions[routes.STACK_OVF]}>
+        <TouchableHighlight onPress={Actions[STACK_OVF_ROUTE]}>
           <Text>
             StackOverflow
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={Actions[routes.SIGN_IN]}>
+        <TouchableHighlight onPress={Actions[LOG_OUT_ROUTE]}>
           <Text>
-            Sign In
+            Log Out
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={Actions[LOG_IN_ROUTE]}>
+          <Text>
+            Log In
           </Text>
         </TouchableHighlight>
       </View>

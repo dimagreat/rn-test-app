@@ -1,3 +1,6 @@
-export const LOG_IN_ROUTE = 'log-in';
-export const HOME_ROUTE = 'home';
-export const STACK_OVF_ROUTE = 'stack-overflow';
+// @flow
+
+export const LOG_IN_ROUTE: string = 'log-in';
+export const LOG_OUT_ROUTE: string = 'log-out';
+export const HOME_ROUTE: string = 'home';
+export const STACK_OVF_ROUTE: string = 'stack-overflow';

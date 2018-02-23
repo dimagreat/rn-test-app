@@ -7,14 +7,15 @@ import {
 } from 'react-native-router-flux';
 
 import LogIn from '../auth/LogIn';
+import LogOut from '../auth/LogOut';
 import DrawerContent from './DrawerContent';
 import Home from '../home/Home';
 import StackOverflow from '../stackoverflow/StackOverflow';
 
-import * as routes from './routes';
+import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from './routes';
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class Router extends Component<Props> {
   render() {
     return (
       <Router>
@@ -24,7 +25,7 @@ export default class App extends Component<Props> {
         >
           <Scene
             hideNavBar
-            key={routes.LOG_IN_ROUTE}
+            key={LOG_IN_ROUTE}
             component={LogIn}
           />
           <Drawer
@@ -33,8 +34,9 @@ export default class App extends Component<Props> {
             drawerPosition="right"
             contentComponent={DrawerContent}
           >
-            <Scene key={routes.STACK_OVF_ROUTE} component={StackOverflow} title="Stack Overflow" />
-            <Scene key={routes.HOME_ROUTE} component={Home} title="Home" />
+            <Scene key={STACK_OVF_ROUTE} component={StackOverflow} title="Stack Overflow" />
+            <Scene key={HOME_ROUTE} component={Home} title="Home" />
+            <Scene key={LOG_OUT_ROUTE} component={LogOut} title="Log Out" />
           </Drawer>
         </Stack>
       </Router>
