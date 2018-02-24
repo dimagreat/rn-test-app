@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -13,13 +15,16 @@ import {
 import { HOME_ROUTE } from '../router/routes';
 import { logInAction } from '../redux/actions';
 
-type Props = {};
+type Props = {
+  logIn: (username: string) => void;
+};
+
 class LogIn extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
         <Text>SIGN IN</Text>
-        <TouchableHighlight onPress={this.logIn}>
+        <TouchableHighlight onPress={this.onLogIn}>
           <Text>
             Home
           </Text>
@@ -28,8 +33,8 @@ class LogIn extends Component<Props> {
     );
   }
 
-  logIn () {
-    this.props.logIn();
+  onLogIn = () => {
+    this.props.logIn('default');
     Actions[HOME_ROUTE]();
   }
 }
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
   return {
-    logIn: () => dispatch(logInAction()),
+    logIn: (username) => dispatch(logInAction(username)),
   }
 }
 

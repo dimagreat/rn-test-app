@@ -27,7 +27,7 @@ export function logOutAction(): Action<null> {
 
 export function getQuestionsAction(questions: string[]): Action<GetQuestionsPayload> {
   return {
-    type: LOG_OUT,
+    type: GET_QUESTIONS,
     payload: {
       questions
     }
