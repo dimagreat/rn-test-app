@@ -1,4 +1,7 @@
-export default function* fetchQuestions() {
-  yield 1
-}
+import { getQuestionsSaga } from '../stackoverflow';
 
+export default function* rootSaga() {
+  yield [
+    getQuestionsSaga(),
+  ]
+}

@@ -4,7 +4,7 @@ import { DrawerNavigator, StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { LogOut, Home } from '../../auth/index'
-import StackOverflow from '../../stackoverflow/StackOverflow'
+import { StackOverflow } from '../../stackoverflow'
 
 const styles = StyleSheet.create({
   hamburger: {
