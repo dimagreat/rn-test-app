@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { styles } from './Home.styles';
 
-
 export type Props = {
   username: string;
 };

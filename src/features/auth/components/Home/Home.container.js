@@ -1,8 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 
-import { Home } from './Home';
-import type { Props } from './Home';
+import { type Props, Home } from './Home';
 
 function mapStateToProps(state: AppState): Props {
   return {

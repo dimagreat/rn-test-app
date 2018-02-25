@@ -1,6 +1,5 @@
 // @flow
-import { LogOut } from './LogOut';
-import type { Props } from './LogOut';
+import { type Props, LogOut } from './LogOut';
 import { logOutAction } from '../../actions';
 import { connect } from 'react-redux';
 

@@ -6,16 +6,15 @@ import {
   TextInput,
   View
 } from 'react-native';
-import {
-  Actions,
-} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Feather';
+import { type NavigationActions } from 'react-navigation';
 
-import { HOME_ROUTE } from '../../../router';
+import { DRAWER_ROUTE } from '../../../router';
 import { styles } from './LogIn.styles';
 
 export type Props = {
   logIn: (username: string) => void;
+  navigation: NavigationActions
 };
 
 type State = {
@@ -55,7 +54,7 @@ export class LogIn extends Component<Props, State> {
             keyboardType='email-address'
             autoCapitalize='none'
             autoCorrect={false}
-            onChangeText={ (text)=> this.setState({username: text}) }
+            onChangeText={(text) => this.setState({ username: text })}
             onSubmitEditing={() => this.passwordInput && this.passwordInput.focus()}
           />
         </View>
@@ -69,7 +68,7 @@ export class LogIn extends Component<Props, State> {
             placeholder='Password'
             returnKeyType='go'
             ref={(input) => this.passwordInput = input}
-            onChangeText={ (text)=> this.setState({password: text}) }
+            onChangeText={(text) => this.setState({ password: text })}
           />
         </View>
         <TouchableHighlight
@@ -102,7 +101,7 @@ export class LogIn extends Component<Props, State> {
 
   performLogin = () => {
     this.props.logIn(this.state.username);
-    Actions[HOME_ROUTE]();
+    this.props.navigation.replace(DRAWER_ROUTE);
     this.setState({
       username: '',
       password: '',

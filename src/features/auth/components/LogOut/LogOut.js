@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { type NavigationActions } from 'react-navigation';
 
 import { LOG_IN_ROUTE } from '../../../router';
 import { styles } from './LogOut.styles';
@@ -13,12 +13,13 @@ import { styles } from './LogOut.styles';
 
 export type Props = {
   logOut: () => void;
+  navigation: NavigationActions;
 };
 
 export class LogOut extends Component<Props> {
   onLogOut = () => {
     this.props.logOut();
-    Actions[LOG_IN_ROUTE]();
+    this.props.navigation.navigate(LOG_IN_ROUTE);
   };
 
   render() {
