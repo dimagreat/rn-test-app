@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -9,7 +10,7 @@ import {
   Actions,
 } from 'react-native-router-flux';
 
-import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from './routes';
+import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from '../routes';
 
 type Props = {};
 export default class App extends Component<Props> {

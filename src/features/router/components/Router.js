@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import {
   Scene,
@@ -6,13 +7,11 @@ import {
   Stack,
 } from 'react-native-router-flux';
 
-import LogIn from '../components/LogIn';
-import LogOut from '../components/LogOut';
+import { LogIn, LogOut, Home }  from '../../auth/index';
 import DrawerContent from './DrawerContent';
-import Home from '../components/Home';
-import StackOverflow from '../components/StackOverflow';
+import StackOverflow from '../../stackoverflow/StackOverflow';
 
-import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from './routes';
+import { LOG_IN_ROUTE, LOG_OUT_ROUTE, STACK_OVF_ROUTE, HOME_ROUTE } from '../routes';
 
 type Props = {};
 export default class RouteNavigator extends Component<Props> {

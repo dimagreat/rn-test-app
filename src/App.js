@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
 
-import Router from './router/Router';
-import configureStore from './redux/store';
+import { Router } from './features/router/';
+import { configureStore } from './features/redux';
 
 const store = configureStore();
 
@@ -11,8 +12,17 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={store} >
-        <Router />
+        <View style={styles.container}>
+          <Router />
+        </View>
       </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF'
+  },
+});
