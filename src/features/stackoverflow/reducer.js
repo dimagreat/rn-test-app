@@ -1,37 +1,44 @@
+// @flow
+
 import {
   QUESTIONS_FETCH_REQUESTED,
   QUESTIONS_FETCH_SUCCESS,
 } from './actionKeys';
 import { createReducer } from '../utils';
-import { QuestionSuccessPayload, QuestionRequestPayload } from './actions';
+import { type QuestionSuccessPayload } from './actions';
 
 type QuestionsState = {
   isLoading: boolean;
   questions: string[];
-  page: number;
+  pagination: {
+    page: number;
+    hasNext: boolean;
+  }
 }
 
 const initialState: QuestionsState = {
   isLoading: false,
-  page: 1,
-  questions: []
+  questions: [],
+  pagination: {
+    page: 1,
+    hasNext: true
+  },
 };
 
 export default createReducer(initialState, {
-  [QUESTIONS_FETCH_REQUESTED] (state: QuestionsState, action: Action<QuestionRequestPayload>): QuestionsState {
+  [QUESTIONS_FETCH_REQUESTED] (state: QuestionsState): QuestionsState {
     return {
       ...state,
       isLoading: true,
-      page: action.payload.page
     };
   },
   [QUESTIONS_FETCH_SUCCESS] (state: QuestionsState, action: Action<QuestionSuccessPayload>): QuestionsState {
-    const { page, questions } = action.payload;
+    const { pagination, questions } = action.payload;
     return {
       ...state,
       isLoading: false,
-      page,
-      questions: page > 1 ? [...state.questions, questions] : questions,
+      questions: pagination.page > 1 ? [...state.questions, ...questions] : questions,
+      pagination,
     };
   },
 });

@@ -3,23 +3,26 @@ import { QUESTIONS_FETCH_REQUESTED, QUESTIONS_FETCH_SUCCESS } from './actionKeys
 
 export type QuestionRequestPayload = number;
 export type QuestionSuccessPayload = {
-  page: number;
   questions: string[];
+  pagination: {
+    page: number,
+    hasNext: boolean;
+  };
 };
 
-export function requestQuestions(page): Action<QuestionRequestPayload> {
+export function requestQuestions(page: number): Action<QuestionRequestPayload> {
   return {
     type: QUESTIONS_FETCH_REQUESTED,
     payload: page,
   };
 }
 
-export function questionsFetchSuccess(page, questions): Action<QuestionSuccessPayload> {
+export function questionsFetchSuccess(data: QuestionSuccessPayload): Action<QuestionSuccessPayload> {
   return {
     type: QUESTIONS_FETCH_SUCCESS,
     payload: {
-      page,
-      questions,
+      questions: data.questions,
+      pagination: data.pagination,
     },
   };
 }

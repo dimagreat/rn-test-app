@@ -1,21 +1,30 @@
-const API_KEY = 'NaT81W3XjVhsBfbRkGpfSw((';
-const ROOT_URL = `https://api.stackexchange.com/2.2/search?key=${API_KEY}&site=stackoverflow&order=desc&sort=creation&filter=default`;
+// @flow
 
-export function fetchQuestions(page) {
-  // try {
-  //   const response = await fetch(
-  //     `${ENDPOINT}/${QUESTIONS_URL}?site=stackoverflow&page=${page}&pagesize=50&tagged=${encodeURIComponent(tagged)}&key=${API_KEY}`
-  //   ;
-  //   const items = await response.json();
-  //   return items;
-  // } catch (e) {
-  //   console.error(e)
-  // }
-  return fetch(`${ROOT_URL}&page=${page}`).then(resp => {
-    if (resp.ok) {
-      return resp.json();
-    } else {
-      return Promise.reject(resp.status);
+const TAGGED = '&tagged=react-native';
+const PAGE_SIZE = '&pagesize=50';
+const API_URL = 'https://api.stackexchange.com/2.2';
+const API_METHOD = '/questions';
+const ROOT_URL = `${API_URL}${API_METHOD}?order=desc&${TAGGED}&sort=activity&site=stackoverflow${PAGE_SIZE}`;
+
+export async function fetchQuestions(page: number) {
+  try {
+    const response = await fetch(`${ROOT_URL}&page=${page}`);
+    const json = await response.json();
+    // TODO: Error handling
+    if (json.error_message) {
+      return {
+        error: true
+      }
     }
-  }).then(json => json.items);
+    return {
+      questions: json.items.map(item => item.title),
+      pagination: {
+        hasNext: json.has_more,
+        page: page
+      }
+    }
+
+  } catch (e) {
+    return e;
+  }
 }

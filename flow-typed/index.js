@@ -5,7 +5,10 @@ type AppState = {
   questions: {
     isLoading: boolean;
     questions: string[];
-    page: number;
+    pagination: {
+      page: number;
+      hasNext: boolean;
+    }
   }
 }
 

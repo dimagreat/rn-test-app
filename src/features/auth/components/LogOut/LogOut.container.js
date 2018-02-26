@@ -1,10 +1,13 @@
 // @flow
-import { type Props, LogOut } from './LogOut';
+import { LogOut } from './LogOut';
 import { logOutAction } from '../../actions';
 import { connect } from 'react-redux';
 
+type StateProps = {
+  logOut: () => void;
+}
 
-function mapDispatchToProps(dispatch): Props {
+function mapDispatchToProps(dispatch): StateProps {
   return {
     logOut: () => dispatch(logOutAction()),
   }

@@ -1,12 +1,16 @@
 // @flow
 import { connect } from 'react-redux';
 
-import {type Props, LogIn } from './LogIn';
+import { LogIn } from './LogIn';
 import { logInAction } from '../../actions';
 
-function mapDispatchToProps(dispatch): Props {
+type StateProps = {
+  logIn: (username: string) => void;
+}
+
+function mapDispatchToProps(dispatch): StateProps {
   return {
-    logIn: (username) => dispatch(logInAction(username)),
+    logIn: (username: string) => dispatch(logInAction(username)),
   }
 }
 

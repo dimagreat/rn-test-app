@@ -6,7 +6,7 @@ import { requestQuestions } from '../actions';
 
 function mapStateToProps(state: AppState) {
   return {
-    page: state.questions.page,
+    pagination: state.questions.pagination,
     isLoading: state.questions.isLoading,
     questions: state.questions.questions,
   };
@@ -14,7 +14,7 @@ function mapStateToProps(state: AppState) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getQuestions: (page) => dispatch(requestQuestions(page)),
+    getQuestions: (page: number) => dispatch(requestQuestions(page)),
   }
 }
 

@@ -10,14 +10,17 @@ import { styles } from './QuestionsList.styles';
 
 export type Props = {
   isLoading: boolean;
-  page: number;
+  pagination: {
+    page: number;
+    hasNext: boolean;
+  };
   questions: string[];
-  getQuestions: () => void;
+  getQuestions: (page: number) => void;
 };
 
 export class QuestionsList extends Component<Props> {
   componentDidMount() {
-    this.props.getQuestions(1);
+    this.props.getQuestions(this.props.pagination.page);
   }
 
   render() {
@@ -37,7 +40,6 @@ export class QuestionsList extends Component<Props> {
     );
   }
 
-  // TODO: Error Handling
   renderQuestions() {
     if (this.props.isLoading) {
       return null;
@@ -55,17 +57,20 @@ export class QuestionsList extends Component<Props> {
   }
 
   onLoadNext = () => {
-    this.props.getQuestions(this.props.page + 1);
+    if (!this.props.pagination.hasNext) {
+      return;
+    }
+    this.props.getQuestions(this.props.pagination.page + 1);
   };
 
   keyExtractor = (item, index) => {
-    return index;
+    return index.toString();
   };
 
   renderItem  = (item, index) => (
-    <View style = {[styles.questionContainer, {backgroundColor: (index % 2 === 0) ? '#e0e0e0' : 'white'}]}>
+    <View style={[styles.questionContainer, {backgroundColor: (index % 2 === 0) ? '#e0e0e0' : 'white'}]}>
       <Text style={styles.questionTitle}>
-        {item.title}
+        {item}
       </Text>
     </View>
   );

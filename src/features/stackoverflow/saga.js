@@ -1,15 +1,18 @@
-import { call, put, take } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { questionsFetchSuccess } from './actions';
 import { fetchQuestions } from './api';
 import { QUESTIONS_FETCH_REQUESTED } from './actionKeys'
 
-export default function* () {
+function* getData(action) {
   try {
-    yield take(QUESTIONS_FETCH_REQUESTED);
-    const questions = yield call(fetchQuestions);
-    yield put(questionsFetchSuccess(1, questions));
-  } catch(error) {
-    console.error(error);
+    const questionsData = yield call(() => fetchQuestions(action.payload));
+    yield put(questionsFetchSuccess(questionsData));
+  } catch (e) {
+    console.error(e);
   }
+}
+
+export default function* () {
+  yield takeLatest(QUESTIONS_FETCH_REQUESTED, getData);
 }
